@@ -50,7 +50,9 @@ public class Calculator {
         } catch (Exception e) {
             return Record.fail(e.getMessage());
         }
-        return Record.ok(expression, calcResult);
+        Record record = Record.ok(expression, calcResult);
+        calcLogger.addRecord(record);
+        return record;
     }
 
     /**

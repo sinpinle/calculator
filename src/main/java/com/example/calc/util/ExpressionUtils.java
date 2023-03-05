@@ -16,6 +16,8 @@ public final class ExpressionUtils {
      * 分割输入的表达式
      * 只针对简单的运算表达式，不包含括号等
      * 这里不支持复杂的运算表达式
+     * <p>
+     * PS 暂时不支持负数，如果支持负数，那么第二个数字应该有括号了，可以扩展
      *
      * @param expression 运算表达式
      * @return str[0] 数字；str[1] 运算符；str[2] 数字

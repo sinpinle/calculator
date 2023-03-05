@@ -40,12 +40,12 @@ public final class CalcUtils {
     }
 
     private static String multiply(BigDecimal first, BigDecimal second) {
-        BigDecimal result = first.multiply(second);
+        BigDecimal result = first.multiply(second).stripTrailingZeros();
         return result.toPlainString();
     }
 
     private static String subtract(BigDecimal first, BigDecimal second) {
-        BigDecimal result = first.subtract(second);
+        BigDecimal result = first.subtract(second).stripTrailingZeros();
         return result.toPlainString();
     }
 
@@ -59,7 +59,7 @@ public final class CalcUtils {
     }
 
     private static String add(BigDecimal first, BigDecimal second) {
-        BigDecimal result = first.add(second);
+        BigDecimal result = first.add(second).stripTrailingZeros();
         return result.toPlainString();
     }
 

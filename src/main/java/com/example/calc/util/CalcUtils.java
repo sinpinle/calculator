@@ -1,7 +1,5 @@
 package com.example.calc.util;
 
-import com.example.calc.StrConst;
-
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
@@ -53,9 +51,10 @@ public final class CalcUtils {
 
     private static String divide(BigDecimal first, BigDecimal second) {
         if (second.signum() == 0) {
-            return "NaN";
+            throw new IllegalArgumentException("除数为0");
+//            return "NaN";
         }
-        BigDecimal result = first.divide(second, 12, RoundingMode.HALF_UP);
+        BigDecimal result = first.divide(second, 12, RoundingMode.HALF_UP).stripTrailingZeros();
         return result.toPlainString();
     }
 

@@ -24,6 +24,9 @@ public class CalcLogger {
      * 获取最新的一次计算记录
      */
     public Record getLastRecord() {
+        if (records.isEmpty()) {
+            return Record.fail("暂无运算操作记录，请输入运算表达式");
+        }
         return records.get(0);
     }
 

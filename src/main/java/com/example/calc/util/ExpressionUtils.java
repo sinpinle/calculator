@@ -1,7 +1,5 @@
 package com.example.calc.util;
 
-import java.util.regex.Pattern;
-
 /**
  * @author lishengbing
  * @version 1.0
@@ -11,21 +9,7 @@ import java.util.regex.Pattern;
  */
 public final class ExpressionUtils {
 
-    private static final String OPERATOR = "[+\\-*/]";
-
-    private static final Pattern NUM_REG = Pattern.compile("[-|+]?\\d+(.\\d+)?");
-
     private ExpressionUtils() {
-    }
-
-    /**
-     * 判断运算表达式是否合法
-     *
-     * @param expression 运算表达式
-     * @return boolean
-     */
-    public static boolean validExpression(String expression) {
-        return NUM_REG.matcher(expression).matches();
     }
 
     /**
@@ -37,8 +21,38 @@ public final class ExpressionUtils {
      * @return str[0] 数字；str[1] 运算符；str[2] 数字
      */
     public static String[] splitExpression(String expression) {
-        //前提是合法的运算表达式，应用类已经调用 validExpression 方法
-        return expression.split(OPERATOR);
+        String opr;
+        int oprIndex;
+        if (expression.contains(StrConst.ADD)) {
+            opr = StrConst.ADD;
+            oprIndex = expression.indexOf(StrConst.ADD, 1);
+        } else if (expression.contains(StrConst.SUBTRACT)) {
+            opr = StrConst.SUBTRACT;
+            oprIndex = expression.indexOf(StrConst.SUBTRACT, 1);
+        } else if (expression.contains(StrConst.MULTIPLY)) {
+            opr = StrConst.MULTIPLY;
+            oprIndex = expression.indexOf(StrConst.MULTIPLY);
+        } else if (expression.contains(StrConst.DIVIDE)) {
+            opr = StrConst.DIVIDE;
+            oprIndex = expression.indexOf(StrConst.DIVIDE);
+        } else {
+            throw new IllegalArgumentException("运算表达式错误，请重新输入");
+        }
+
+        if (oprIndex < 1) {
+            throw new IllegalArgumentException("运算表达式错误，请重新输入");
+        }
+
+        String first = expression.substring(0, oprIndex);
+        String second = expression.substring(oprIndex + 1);
+
+        //校验字符串是否是合法的数字
+        if (!StringUtils.isNumber(first) || !StringUtils.isNumber(second)) {
+            throw new IllegalArgumentException("运算表达式错误，请重新输入");
+        }
+
+        return new String[]{first, opr, second};
     }
+
 
 }

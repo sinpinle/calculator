@@ -1,4 +1,4 @@
-package com.example.calc;
+package com.example.calc.util;
 
 /**
  * @author lishengbing
@@ -10,6 +10,8 @@ package com.example.calc;
 public interface StrConst {
 
     String EMPTY = "";
+
+    String DOT = ".";
 
     String EQUALS = "=";
 

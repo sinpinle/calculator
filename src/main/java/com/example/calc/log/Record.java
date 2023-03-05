@@ -1,6 +1,6 @@
 package com.example.calc.log;
 
-import com.example.calc.StrConst;
+import com.example.calc.util.StrConst;
 import com.example.calc.util.StringUtils;
 
 /**

@@ -38,14 +38,10 @@ public class Calculator {
         if (StringUtils.isEmpty(expression)) {
             return Record.fail("请输入运算表达式");
         }
-        boolean valid = ExpressionUtils.validExpression(expression);
-        if (!valid) {
-            return Record.fail("输入的运算表达式不正确，请重新输入");
-        }
 
-        String[] inputs = ExpressionUtils.splitExpression(expression);
         String calcResult;
         try {
+            String[] inputs = ExpressionUtils.splitExpression(expression);
             calcResult = CalcUtils.calculate(inputs);
         } catch (Exception e) {
             return Record.fail(e.getMessage());
